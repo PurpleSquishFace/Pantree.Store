@@ -1,0 +1,55 @@
+﻿@model StorageMain
+
+@{
+    ViewData["Title"] = "Storage";
+}
+
+<div id="storageSection">
+
+    <div class="page-header">
+        <h1>@ViewData["Title"]</h1>
+        <button class="responsive-menu" toggle="storage-menu"><i class="fas fa-bars"></i></button>
+    </div>
+
+    <div class="manage-storage-container">
+        <div class="storage-menu">
+            <button load="@Url.Action("Search", "Storage")" partial="storageSection" class="@(Model.Search ? "selected" : "")"><i class="fas fa-fw fa-search"></i> Search</button>
+            <button load="@Url.Action("LocationAdd", "Storage")" partial="storageSection" class="@(Model.AddLocation? "selected" : "")"><i class="fas fa-fw fa-plus"></i> Add Location</button>
+
+            @foreach (var location in Model.Locations)
+            {
+                <div class="menu-item">
+                    <button load="@Url.Action("Location", "Storage", new { LocationID = location.LocationID })" partial="storageSection" class="@(Model.SelectedLocationID == location.LocationID ? "selected" : "")"><i class="fas fa-fw fa-archive"></i> @location.LocationName</button>
+                    <div class="menu-submenu @(location.LocationID == Model.SelectedLocationID ? "submenu-expanded" : "")">
+                        @foreach (var store in location.Stores)
+                        {
+                            <button load="@Url.Action("Store", "Storage", new { location.LocationID, store.StoreID })" partial="storageSection" class="@(Model.SelectedStoreID == store.StoreID ? "selected" : "")"><i class="fas fa-fw fa-angle-right"></i> @store.StoreName</button>
+                        }
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <div id="storageContainer" class="storage-main">
+            @if (Model.Search)
+            {
+                <partial name="_Search" model="Model.StorageSearch" />
+            }
+            else if (Model.AddLocation)
+            {
+                <partial name="_AddLocation" model="Model.LocationAdd" />
+            }
+            else if (Model.SelectedStoreID == null)
+            {
+                <partial name="_ViewLocation" model="Model.SelectedLocation" />
+            }
+            else
+            {
+                <partial name="_ViewStore" model="Model.SelectedStore" />
+            }
+
+        </div>
+    </div>
+
+</div>

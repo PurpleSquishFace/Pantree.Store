@@ -1,0 +1,38 @@
+﻿@model LocationAdd
+
+<div class="storage-form">
+
+    <h2>Add Location</h2>
+
+    <hr class="heading-line" />
+
+    <form asp-controller="Storage" asp-action="AddLocation" class="load-partial" attr-partial="storageSection" method="post">
+
+        <div class="form-input-container">
+            <label asp-for="LocationName"></label>
+            <div class="input-container">
+                <input asp-for="LocationName" />
+            </div>
+            <span asp-validation-for="LocationName"></span>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="LocationDescription"></label>
+            <div class="input-container">
+                <input asp-for="LocationDescription" />
+            </div>
+            <span asp-validation-for="LocationDescription"></span>
+        </div>
+
+        <div class="btn-tray btn-tray-center">
+            <div class="btn btn-save btn-form">
+                <i class="fas fa-check"></i><div class="btn-text">Add</div>
+            </div>
+            <div class="loading-icon">
+                <i class="fas fa-spinner fa-2x fa-spin"></i>
+            </div>
+        </div>
+
+    </form>
+
+</div>

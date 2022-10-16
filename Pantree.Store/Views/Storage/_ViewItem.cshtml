@@ -1,0 +1,33 @@
+﻿    @model StoredItem 
+
+<div class="item-section">
+
+    <div id="header_@Model.ItemID" class="item-header">
+        <partial name="_ItemHeading" model="Model" />
+    </div>
+
+    <div id="item_@Model.ItemID" class="collapsed">
+
+        <div class="form-input-container">
+            <label asp-for="ProductCode"></label>
+            <div class="input-container">
+                @Model.ProductCode
+            </div>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="IngredientList"></label>
+            <div class="input-container">
+                @Model.IngredientList
+            </div>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="Notes"></label>
+            <div class="input-container">
+                @Model.Notes
+            </div>
+        </div>
+
+    </div>
+</div>

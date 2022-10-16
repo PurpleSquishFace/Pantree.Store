@@ -1,0 +1,17 @@
+﻿@model ScanSubmit
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<partial name="_Background" />
+
+<div class="page-center relative">
+    <div class="btn-tray LoadScanCode">
+        <div class="btn btn-edit btn-static" reveal="ScanCodeForm" conceal="LoadScanCode" callback="LoadScanForm">
+            <div class="btn-text">Scan</div><i class="fas fa-angle-double-right"></i>
+        </div>
+    </div>
+
+    <div id="FormContainer"></div>
+</div>

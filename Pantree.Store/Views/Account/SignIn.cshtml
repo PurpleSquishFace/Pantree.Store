@@ -1,0 +1,25 @@
+﻿@model AccessMain
+
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<div id="storageSection">
+
+    <div class="page-header">
+        <h1>Sign In</h1>
+    </div>
+
+    <partial name="_SignInForm" model="Model.SignIn" />
+
+</div>
+
+<div id="storageSection">
+
+    <div class="page-header">
+        <h1>Sign Up</h1>
+    </div>
+
+    <partial name="_SignUpForm" model="Model.SignUp" />
+
+</div>

@@ -1,0 +1,72 @@
+﻿@model FriendSearch
+
+<div id="SeachContainer">
+    <h3>Search</h3>
+
+    <form asp-controller="Account" asp-action="SearchUsers" method="post" class="load-partial" attr-partial="SeachContainer">
+
+        <div class="form-input-container">
+            <div class="input-container">
+                <input asp-for="SearchQuery" />
+                <div class="btn-tray">
+                    <div class="btn btn-edit btn-form">
+                        <i class="fas fa-search"></i><div class="btn-text">Search</div>
+                    </div>
+                    <div class="loading-icon">
+                        <i class="fas fa-spinner fa-2x fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    @if (Model.Results == null)
+    {
+        <div>Search a username to find some friends</div>
+    }
+    else if (Model.Results.Count == 0)
+    {
+        <div>No results, keep trying...</div>
+    }
+    else
+    {
+        <div class="friend-list-container">
+            @foreach (var result in Model.Results)
+            {
+                <div class="friend-container">
+                    @if (result.User_ProfileImage == null)
+                    {
+                        <img src="/images/ProfileImagePlaceholder.jpg" alt="Profile Image Placeholder" />
+                    }
+                    else
+                    {
+                        <img src="data:image;base64,@Convert.ToBase64String(result.User_ProfileImage.ProfileImage)" alt="@result.User_ProfileImage.AlternativeText" />
+                    }
+
+                    <div class="friend-name">@result.DisplayName</div>
+                    <div class="friend-username">@result.UserName</div>
+
+                    @if (result.Status == FriendStatus.CurrentUser)
+                    {<div class="friend-status">That's you!</div>}
+                    else if (result.Status == FriendStatus.Accepted)
+                    {<div class="friend-status">You're already friends!</div>}
+                    else if (result.Status == FriendStatus.Requested)
+                    {<div class="friend-status">Request Pending</div>}
+                    else
+                    {
+                        <div class="btn-tray btn-tray-left">
+                            <form asp-controller="Account" asp-action="SendFriendRequest" class="load-partial" attr-partial="accountContainer">
+                                <input name="UserID" value="@result.UserID" type="hidden" />
+                                <div class="btn btn-save btn-form">
+                                    <i class="fas fa-check"></i><div class="btn-text">Add</div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+</div>

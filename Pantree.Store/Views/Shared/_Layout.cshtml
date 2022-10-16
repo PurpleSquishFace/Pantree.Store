@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pantree</title>
+    <link rel="icon" href="/images/favicon.ico">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/lib/cropper/cropper.min.css" />
+    <link rel="stylesheet" href="/css/AnimatedShapes.css" />
+    <link rel="stylesheet" href="/css/ResponsiveStyle.css" />
+</head>
+@{
+    var user = (User)ViewBag.User;
+}
+<body>
+    <div class="navbar navbar-top">
+        <div class="navbar-icon">
+            <a asp-controller="Storage" asp-action="Index"><i class="fas fa-box-open"></i></a>
+        </div>
+        <div>
+            <a asp-controller="Home" asp-action="Index"><img src="~/images/Pantree.jpg" class="logo" /></a>
+        </div>
+        <div class="navbar-icon">
+            <a asp-controller="Account" asp-action="Index">
+                @if (user?.IsAuthenticated == true && user.UserDetails.ProfileImage != null)
+                {
+                    <img src="@Url.Action("LoadProfileImage", "Account")" alt="@user.UserDetails?.ProfileImage?.AlternativeText" class="profile-image" />
+                }
+                else
+                {
+                    <i class="fas fa-user-circle"></i>
+                }
+            </a>
+        </div>
+    </div>
+
+    <div class="body-content">
+        @RenderBody()
+        <div class="about-container">
+            <a asp-controller="Home" asp-action="About">About</a> | <a asp-controller="Home" asp-action="Cookies">Cookies</a> | <a asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script src="~/lib/cropper/cropper.min.js"></script>
+    <script src="~/lib/cropper/jquery-cropper.min.js"></script>
+    <script src="~/lib/zxing-js/zxing.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

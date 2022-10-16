@@ -1,0 +1,9 @@
+﻿@model StoreSelect
+
+<div id="@Model.ElementID" class="form-input-container">
+    <label asp-for="StoreID"></label>
+    <div class="input-container">
+        <select class="field" asp-for="StoreID" asp-items="Model.Stores"></select>
+    </div>
+    <span asp-validation-for="StoreID"></span>
+</div>

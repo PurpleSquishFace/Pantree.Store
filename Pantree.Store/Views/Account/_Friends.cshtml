@@ -1,0 +1,26 @@
+﻿@model FriendMasterView
+
+<div class="account-form">
+
+    <h2>Friends</h2>
+
+    <hr class="heading-line" />
+
+    <div class="tab-tray">
+        <button class="selected" show="FriendsAccepted">Accepted</button>
+        <button show="FriendsRequested">Pending</button>
+        <button show="FriendsBlocked">Blocked</button>
+        <button show="FriendsSearch">Search</button>
+    </div>
+
+    <partial name="_Friends_Accepted" model="Model.Friends.Where(i => i.FriendStatus == FriendStatus.Accepted).ToList()" />
+
+    <partial name="_Friends_Requested" model="Model.Friends.Where(i => i.FriendStatus == FriendStatus.Requested).ToList()" />
+
+    <partial name="_Friends_Blocked" model="Model.Friends.Where(i => i.FriendStatus == FriendStatus.Blocked && i.UserID_Requester == ViewBag.CurrentUser.UserID).ToList()" />
+
+    <div id="FriendsSearch" class="friend-partial">
+        <partial name="_Friends_Search" model="Model.Search" />
+    </div>
+
+</div>

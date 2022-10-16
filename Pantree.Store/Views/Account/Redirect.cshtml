@@ -1,0 +1,17 @@
+﻿@model string
+
+@{
+    ViewData["Title"] = "Redirecting...";
+}
+
+<div class="lds-loading-container">
+    <div class="lds-loading"><div></div><div></div><div></div></div>
+</div>
+
+@section scripts{
+    <script>
+        $(window).on('load', function() {
+            window.location.replace("/@Model");
+        });
+    </script>
+}

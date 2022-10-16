@@ -1,0 +1,47 @@
+﻿@model StorageSearchMain
+
+    <div id="SeachContainer">
+
+        <div class="storage-form">
+
+            <h2>Search</h2>
+
+            <hr class="heading-line" />
+
+            <form asp-controller="Storage" asp-action="SearchStorage" method="post" class="load-partial" attr-partial="SeachContainer">
+
+                <div class="form-input-container">
+                    <div class="input-container">
+                        <input asp-for="SearchQuery" />
+                        <div class="btn-tray">
+                            <div class="btn btn-edit btn-form">
+                                <i class="fas fa-search"></i><div class="btn-text">Search</div>
+                            </div>
+                            <div class="loading-icon">
+                                <i class="fas fa-spinner fa-2x fa-spin"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            @if (Model.Results == null)
+            {
+                <div>Search to find items you have stored</div>
+            }
+            else if (Model.Results.Count == 0)
+            {
+                <div>No results found, try again...</div>
+            }
+            else
+            {
+                @foreach (var result in Model.Results)
+                {
+                    <partial name="_SearchResult" model="result" />
+                }
+            }
+
+        </div>
+
+    </div>

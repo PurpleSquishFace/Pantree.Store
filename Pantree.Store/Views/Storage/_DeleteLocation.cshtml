@@ -1,0 +1,32 @@
+﻿@model LocationDelete
+
+<div id="LocationDelete" class="viewLocation-partial">
+
+    <h3>Delete Location</h3>
+
+    <div>To ensure you're definitely sure about what you're doing, you need to type the name of the location exactly as it it appears here: <b>@Model.LocationName</b></div>
+
+    <form asp-controller="Storage" asp-action="DeleteLocation" class="load-partial" attr-partial="storageSection" method="post">
+
+        <input asp-for="LocationID" type="hidden" />
+        <input asp-for="LocationName" type="hidden" />
+
+
+        <div class="form-input-container">
+            <label asp-for="EnteredName"></label>
+            <div class="input-container">
+                <input asp-for="EnteredName">
+                <div class="btn-tray">
+                    <div class="btn btn-cancel btn-form">
+                        <i class="fas fa-trash-alt"></i><div class="btn-text">Delete</div>
+                    </div>
+                    <div class="loading-icon">
+                        <i class="fas fa-spinner fa-2x fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="EnteredName"></span>
+        </div>
+
+    </form>
+</div>

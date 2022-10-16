@@ -1,0 +1,38 @@
+﻿@model SignInSubmit
+
+<div class="account-signin-container">
+
+    <form asp-controller="Account" asp-action="SignIn" method="post">
+
+        <input asp-for="Redirect" type="hidden" />
+
+        <div class="form-input-container">
+            <label asp-for="Username"></label>
+            <div class="input-container">
+                <input asp-for="Username" />
+            </div>
+            <span asp-validation-for="Username"></span>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="Password"></label>
+            <div class="input-container">
+                <input asp-for="Password" />
+            </div>
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="form-input-container-inline">
+            <label asp-for="RememberMe"></label>&emsp;<input asp-for="RememberMe" />
+            <span asp-validation-for="RememberMe"></span>
+        </div>
+
+        <div class="btn-tray btn-tray-center">
+            <div class="btn btn-edit btn-form">
+                <i class="fas fa-arrow-right"></i><div class="btn-text">Sign In</div>
+            </div>
+        </div>
+
+    </form>
+
+</div>

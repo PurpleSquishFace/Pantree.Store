@@ -1,0 +1,35 @@
+﻿@model AccountMain
+
+@{
+    ViewData["Title"] = "Your Account";
+}
+<div class="page-header">
+    <h1>@ViewData["Title"]</h1>
+    <button class="responsive-menu" toggle="account-menu"><i class="fas fa-bars"></i></button>
+</div>
+
+<div class="manage-account-container">
+    <div class="account-menu">
+        <button load="@Url.Action("Details", "Account")" partial="accountContainer" class="@(Model.Section == AccountSections.Details ? "selected" : "")"><i class="far fa-fw fa-list-alt"></i> Account Details</button>
+        <button load="@Url.Action("ProfileImage", "Account")" partial="accountContainer" attr-callback="SetupCanvas" class="@(Model.Section == AccountSections.ProfileImage ? "selected" : "")"><i class="far fa-fw fa-image"></i> Profile Image</button>
+        <button load="@Url.Action("Friends", "Account")" partial="accountContainer" class="@(Model.Section == AccountSections.Friends ? "selected" : "")"><i class="fas fa-fw fa-user-friends"></i> Friends</button>
+        <form asp-controller="Account" asp-action="SignOut" method="post">
+            <button type="submit"><i class="fas fa-fw fa-sign-out-alt"></i> Log Out</button>
+        </form>
+    </div>
+
+    <div id="accountContainer" class="account-main">
+        @switch (Model.Section)
+        {
+            case AccountSections.Details:
+                <partial name="_Details" model="Model.CurrentUser" />
+                break;
+            case AccountSections.ProfileImage:
+                <partial name="_ProfileImage" />
+                break;
+            case AccountSections.Friends:
+                <partial name="_Friends" model="Model.FriendMasterView" />
+                break;
+        }
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model StorageSearch
+
+<div class="item-section">
+
+    <div id="header_@Model.ItemID" class="item-header">
+        <h3>@Model.ProductName (Total Qty. @Model.TotalQuantity)</h3>
+
+        <div class="btn-tray">
+            <div class="btn btn-edit" callback="ToggleItem" callback-param="item_@Model.ItemID">
+                <i class="fas fa-angle-down"></i><div class="btn-text">View</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="item_@Model.ItemID" class="collapsed">
+
+        @foreach (var item in Model.Items)
+        {
+            <div class="item-result">
+                <div>@item.LocationName > @item.StoreName (Qty. @item.Quantity)</div>
+
+                <form asp-controller="Storage" asp-action="Store" class="load-partial" attr-partial="storageSection" method="post">
+                    <input name="LocationID" value="@item.LocationID" type="hidden" />
+                    <input name="StoreID" value="@item.StoreID" type="hidden" />
+                    <div class="btn-tray">
+                        <div class="btn btn-edit btn-form">
+                            <i class="fas fa-angle-right"></i><div class="btn-text">Go to</div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        }
+
+    </div>
+</div>

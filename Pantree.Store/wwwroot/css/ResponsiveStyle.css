@@ -1,0 +1,80 @@
+﻿
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+    .responsive-menu {
+        display: unset;
+    }
+
+    .account-menu,
+    .storage-menu {
+        display: none;
+    }
+
+    .menu-submenu {
+        display: block;
+    }
+
+    .manage-account-container,
+    .manage-storage-container {
+        flex-direction: column;
+    }
+
+    .account-form, 
+    .storage-form {
+        padding: 0 .5rem;
+    }
+
+    .item-section .container-readonly {
+        margin: 0;
+    }
+
+    .input > input.field, .input-file > input.field, .input > select.field, .input > textarea.field {
+        width: 100%;
+        max-width: unset;
+    }
+
+    .input > label, .input-file > label {
+        margin: .5rem 0;
+    }
+
+    .input {
+        margin: .5rem 0;
+    }
+
+    .item-section h3 {
+        width: 60%;
+    }
+
+    .input > .field, .input-file > .field {
+        width: 100%;
+    }
+
+    .index-container{
+        min-width: unset;
+    }
+
+/*    .btn {
+        color: #ffffff;
+    }
+
+    .btn-edit,
+    .btn-edit:hover {
+        background-color: #126dff;
+    }
+
+    .btn-cancel,
+    .btn-cancel:hover {
+        background-color: #eb1717;
+    }
+
+    .btn-save,
+    .btn-save:hover {
+        background-color: #1ed10a;
+    }
+
+    .btn-text {
+        color: #ffffff !important;
+        max-width: 200px !important;
+    }*/
+}

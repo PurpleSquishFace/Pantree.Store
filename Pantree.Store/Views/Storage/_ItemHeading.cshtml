@@ -1,0 +1,33 @@
+﻿@model StoredItem
+
+<h3>@Model.ProductName <span>(Qty. @Model.Quantity)</span></h3>
+
+<div class="btn-tray">
+    <form asp-controller="Storage" asp-action="RemoveItem" class="load-partial" attr-partial="header_@Model.ItemID" method="post">
+        <input asp-for="ItemID" type="hidden" />
+        <input asp-for="StoreID" type="hidden" />
+        <div class="btn btn-cancel btn-form">
+            <i class="fas fa-minus"></i>
+        </div>
+    </form>
+
+    <form asp-controller="Storage" asp-action="AddItem" class="load-partial" attr-partial="header_@Model.ItemID" method="post">
+        <input asp-for="ItemID" type="hidden" />
+        <input asp-for="StoreID" type="hidden" />
+        <div class="btn btn-save btn-form">
+            <i class="fas fa-plus"></i>
+        </div>
+    </form>
+
+    <form asp-controller="Storage" asp-action="DeleteItem" class="load-partial" attr-partial="storageSection" method="post">
+        <input asp-for="ItemID" type="hidden" />
+        <input asp-for="StoreID" type="hidden" />
+        <div class="btn btn-cancel btn-form">
+            <i class="far fa-trash-alt"></i>
+        </div>
+    </form>
+
+    <div class="btn btn-edit" callback="ToggleItem" callback-param="item_@Model.ItemID">
+        <i class="fas fa-angle-down"></i><div class="btn-text">View</div>
+    </div>
+</div>

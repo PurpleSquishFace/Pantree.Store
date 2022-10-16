@@ -1,0 +1,52 @@
+﻿@model ScanSubmit
+
+<div class="index-container">
+
+    <div class="video-container">
+        <video id="video" class="video"></video>
+    </div>
+
+    <form asp-controller="Scan" asp-action="Code" class="load-partial" attr-partial="FormContainer" method="post">
+
+        <div class="form-input-container">
+            <label asp-for="Code"></label>
+            <div class="input-container">
+                <input asp-for="Code" pattern="[0-9]*" inputmode="numeric" />
+                <div class="btn-tray">
+                    <div class="btn btn-save btn-form">
+                        <i class="fas fa-check"></i><div class="btn-text">Enter</div>
+                    </div>
+                    <div class="loading-icon">
+                        <i class="fas fa-spinner fa-2x fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="Code"></span>
+        </div>
+
+    </form>
+
+    <form asp-controller="Scan" asp-action="Image" class="load-partial" attr-partial="FormContainer" enctype="multipart/form-data" method="post">
+
+        <div class="form-input-container">
+            <label asp-for="Image"></label>
+
+            <div class="btn-tray">
+                <div id="LoadImage_Trigger" input-name="UploadImageInput" class="btn btn-edit">
+                    <i class="fas fa-camera"></i><div class="btn-text">Upload</div>
+                </div>
+            </div>
+            <input id="UploadImageInput" class="hidden" asp-for="Image" />
+
+            <span asp-validation-for="Image"></span>
+        </div>
+
+    </form>
+
+    <div class="btn-tray btn-tray-center ScanCodeForm">
+        <div class="btn btn-cancel" reveal="LoadScanCode" conceal="ScanCodeForm" callback="StopScanner">
+            <div class="btn-text">Cancel</div><i class="fas fa-times"></i>
+        </div>
+    </div>
+
+</div>

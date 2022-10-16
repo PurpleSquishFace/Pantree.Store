@@ -1,0 +1,49 @@
+﻿@model PantreeUser
+
+<div class="account-form">
+
+    <h2>Account Details</h2>
+
+    <hr class="heading-line" />
+
+    <div class="form-input-container">
+        <label asp-for="UserName"></label>
+        <div class="input-container">
+            @Html.DisplayFor(m => m.UserName)
+        </div>
+    </div>
+
+    <div class="form-input-container">
+        <label asp-for="EmailAddress"></label>
+        <div class="input-container">
+            @Html.DisplayFor(m => m.EmailAddress)
+        </div>
+    </div>
+
+    <form asp-controller="Account" asp-action="UpdateDetails" class="load-partial" attr-partial="accountContainer" method="post">
+
+        <div class="form-input-container editable-container">
+            <label asp-for="DisplayName"></label>
+            <div class="input-container">
+                <div class="input-text">@Html.DisplayFor(m => m.DisplayName)</div>
+                <input asp-for="DisplayName" />
+                <div class="btn-tray">
+                    <div class="btn btn-edit">
+                        <i class="fas fa-pencil-alt"></i><div class="btn-text">Edit</div>
+                    </div>
+                    <div class="btn btn-save btn-form">
+                        <i class="fas fa-check"></i><div class="btn-text">Save</div>
+                    </div>
+                    <div class="btn btn-cancel">
+                        <i class="fas fa-times"></i><div class="btn-text">Cancel</div>
+                    </div>
+                    <div class="loading-icon">
+                        <i class="fas fa-spinner fa-2x fa-spin"></i>
+                    </div>
+                </div>
+            </div>
+            <span asp-validation-for="DisplayName"></span>
+        </div>
+
+    </form>
+</div>

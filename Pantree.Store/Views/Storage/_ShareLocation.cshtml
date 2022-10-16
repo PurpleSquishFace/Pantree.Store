@@ -1,0 +1,65 @@
+﻿@model LocationShare
+
+<div id="LocationSharing" class="viewLocation-partial @(ViewBag.User.UserID == Model.UserID ? "" : "active")">
+
+    <h3>Sharing</h3>
+
+    @if (ViewBag.User.UserID == Model.UserID)
+    {
+
+        <form asp-controller="Storage" asp-action="ShareLocation" class="load-partial" attr-partial="storageSection" method="post">
+
+            <input asp-for="LocationID" type="hidden" />
+
+            <div class="form-input-container">
+                <label asp-for="UserID"></label>
+                <div class="input-container">
+                    <select asp-for="UserID" asp-items="Model.Friends"><option selected disabled>Please Select</option></select>
+                    <div class="btn-tray">
+                        <div class="btn btn-edit btn-form">
+                            <i class="fas fa-share-alt"></i><div class="btn-text">Share</div>
+                        </div>
+                        <div class="loading-icon">
+                            <i class="fas fa-spinner fa-2x fa-spin"></i>
+                        </div>
+                    </div>
+                </div>
+                <span asp-validation-for="UserID"></span>
+            </div>
+
+        </form>
+    }
+
+    <div class="friend-list-container">
+        @foreach (var user in Model.SharedUsers)
+        {
+            <div class="friend-container">
+                @if (user.User_ProfileImage == null)
+                {
+                    <img src="/images/ProfileImagePlaceholder.jpg" alt="Profile Image Placeholder" />
+                }
+                else
+                {
+                    <img src="data:image;base64,@Convert.ToBase64String(user.User_ProfileImage.ProfileImage)" alt="@user.User_ProfileImage.AlternativeText" />
+                }
+
+                <div class="friend-name">@user.DisplayName</div>
+                <div class="friend-username">@user.UserName</div>
+
+                @if (Model.UserID == ViewBag.User.UserID & Model.UserID != user.UserID)
+                {
+                    <div class="btn-tray btn-tray-left">
+                        <form asp-controller="Storage" asp-action="UnshareLocation" method="post" class="load-partial" attr-partial="storageSection">
+                            <input name="UserID" value="@user.UserID" type="hidden" />
+                            <input name="LocationID" value="@user.LocationID" type="hidden" />
+                            <div class="btn btn-cancel btn-form">
+                                <i class="fas fa-times"></i><div class="btn-text">Remove</div>
+                            </div>
+                        </form>
+                    </div>
+                }
+
+            </div>
+        }
+    </div>
+</div>

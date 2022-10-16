@@ -1,0 +1,156 @@
+﻿/* Animated Circles CSS */
+
+.circles {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+    .circles li {
+        position: absolute;
+        display: block;
+        list-style: none;
+        width: 20px;
+        height: 20px;
+        bottom: calc(-150px - 40vh);
+    }
+
+        .circles li:nth-child(1) {
+            left: 25%;
+            font-size: 1rem;
+            /*width: 80px;
+            height: 80px;*/
+            animation: animate-clockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 10s;
+        }
+
+        .circles li:nth-child(2) {
+            left: 10%;
+            font-size: 1.2rem;
+            /*width: 20px;
+            height: 20px;*/
+            animation: animate-anticlockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+
+        .circles li:nth-child(3) {
+            left: 70%;
+            font-size: 1.4rem;
+            /*width: 20px;
+            height: 20px;*/
+            animation: animate-clockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .circles li:nth-child(4) {
+            left: 40%;
+            font-size: 1.6rem;
+            /*width: 60px;
+            height: 60px;*/
+            animation: animate-anticlockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 15s;
+        }
+
+        .circles li:nth-child(5) {
+            left: 65%;
+            font-size: 1.8rem;
+            /*width: 20px;
+            height: 20px;*/
+            animation: animate-clockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 22s;
+        }
+
+        .circles li:nth-child(6) {
+            left: 75%;
+            font-size: 2rem;
+            /*width: 90px;
+            height: 90px;*/
+            animation: animate-anticlockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 18s;
+        }
+
+        .circles li:nth-child(7) {
+            left: 35%;
+            font-size: 2.2rem;
+            /*width: 50px;
+            height: 50px;*/
+            animation: animate-clockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 30s;
+        }
+
+        .circles li:nth-child(8) {
+            left: 50%;
+            font-size: 2.4rem;
+            /*width: 25px;
+            height: 25px;*/
+            animation: animate-anticlockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 35s;
+        }
+
+        .circles li:nth-child(9) {
+            left: 20%;
+            font-size: 2.6rem;
+            /*width: 15px;
+            height: 15px;*/
+            animation: animate-clockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 40s;
+        }
+
+        .circles li:nth-child(10) {
+            left: 85%;
+            font-size: 2.8rem;
+            /*width: 50px;
+            height: 50px;*/
+            animation: animate-anticlockwise 25s linear infinite;
+            animation-delay: 0s;
+            animation-duration: 45s;
+        }
+
+@keyframes animate-clockwise {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-80vh) rotate(360deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-150vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes animate-anticlockwise {
+    0% {
+        transform: translateY(0) rotate(720deg);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(-80vh) rotate(360deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-150vh) rotate(0deg);
+        opacity: 0;
+    }
+}

@@ -1,0 +1,63 @@
+﻿<div class="account-form">
+
+    <h2>Profile Image</h2>
+
+    <hr class="heading-line" />
+
+    <div class="image-container upload-conceal">
+
+        @if (ViewBag.CurrentUser?.ProfileImage != null)
+        {
+            <img src="@Url.Action("LoadProfileImage", "Account")" alt="@ViewBag.CurrentUser?.ProfileImage?.AlternativeText" />
+        }
+        else
+        {
+            <img src="/images/ProfileImagePlaceholder.jpg" alt="Profile Image Placeholder" />
+        }
+
+
+        <div class="btn-tray btn-tray-left">
+            <div id="LoadImage_Trigger" input-name="ProfilePicture_LoadImage" class="btn btn-edit">
+                <i class="fas fa-camera"></i><div class="btn-text">Upload</div>
+            </div>
+        </div>
+        @if (ViewBag.CurrentUser?.ProfileImage != null)
+        {
+            <div class="btn-tray btn-tray-right">
+                <form asp-controller="Account" asp-action="RemoveProfileImage" method="post" class="load-partial" attr-partial="accountContainer" attr-callback="SetupCanvas">
+                    <div class="btn btn-cancel btn-form">
+                        <i class="fas fa-times"></i><div class="btn-text">Remove</div>
+                    </div>
+                </form>
+            </div>
+        }
+        <input id="ProfilePicture_LoadImage" class="hidden" name="LoadImage" type="file" accept="image/jpg" />
+
+    </div>
+
+    <div class="upload-reveal">
+        <div class="container-center">
+            <div>
+                <canvas id="Image" class="image-profile-editor" />
+            </div>
+        </div>
+
+        <div class="container-flex">
+            <div class="container-half">
+                <form id="ProfileImageForm" asp-controller="Account" asp-action="UploadProfileImage" method="post" enctype="multipart/form-data">
+                    <div id="CropImage" class="btn btn-save">
+                        <i class="fas fa-check"></i><div class="btn-text">Use Selection</div>
+                    </div>
+                </form>
+            </div>
+            <div class="container-half">
+                <form asp-controller="Account" asp-action="ProfileImage" method="post" class="load-partial" attr-partial="accountContainer" attr-callback="SetupCanvas">
+                    <div class="btn btn-edit btn-form">
+                        <i class="fas fa-times"></i><div class="btn-text">Cancel</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

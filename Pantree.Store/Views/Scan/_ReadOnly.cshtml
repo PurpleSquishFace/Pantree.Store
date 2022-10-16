@@ -1,0 +1,43 @@
+﻿@model ProductReadOnly
+
+<div class="index-container">
+
+    @if (!Model.IsNull)
+    {
+        <img src="@Model.ImageUrl" />
+
+        <div class="form-input-container">
+            <label asp-for="ProductCode"></label>
+            <div class="input-container">
+                <input asp-for="ProductCode" disabled="disabled" />
+            </div>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="ProductName"></label>
+            <div class="input-container">
+                <input asp-for="ProductName" disabled="disabled" />
+            </div>
+            <span asp-validation-for="ProductName"></span>
+        </div>
+
+        <div class="form-input-container">
+            <label asp-for="IngredientList"></label>
+            <div class="input-container">
+                <textarea asp-for="IngredientList" disabled="disabled"></textarea>
+            </div>
+            <span asp-validation-for="IngredientList"></span>
+        </div>
+    }
+    else
+    {
+        <div class="container-text">Nothing with the product code <b>@Model.ProductCode</b> could not be found</div>
+    }
+
+    <div class="btn-tray btn-tray-center">
+        <div class="btn btn-cancel" reveal="LoadScanCode" conceal="ScanCodeForm" callback="StopScanner">
+            <div class="btn-text">Cancel</div><i class="fas fa-times"></i>
+        </div>
+    </div>
+
+</div>

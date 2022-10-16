@@ -1,0 +1,42 @@
+﻿@model List<FriendView>
+
+
+<div id="FriendsBlocked" class="friend-partial">
+    <h3>Blocked</h3>
+
+    @if (Model.Count == 0)
+    {
+        <div>Good news, nobody has been blocked!</div>
+    }
+    else
+    {
+        <div class="friend-list-container">
+            @foreach (var friend in Model)
+            {
+                <div class="friend-container">
+                    @if (friend.Friend_ProfileImage == null)
+                    {
+                        <img src="/images/ProfileImagePlaceholder.jpg" alt="Profile Image Placeholder" />
+                    }
+                    else
+                    {
+                        <img src="data:image;base64,@Convert.ToBase64String(friend.Friend_ProfileImage.ProfileImage)" alt="@friend.Friend_ProfileImage.AlternativeText" />
+                    }
+
+                    <div class="friend-name">@friend.Friend_DisplayName</div>
+                    <div class="friend-username">@friend.Friend_UserName</div>
+
+                    <div class="btn-tray btn-tray-right">
+                        <form asp-controller="Account" asp-action="RemoveFriend" method="post" class="load-partial" attr-partial="accountContainer">
+                            <input name="UserFriendID" value="@friend.UserFriendID" type="hidden" />
+                            <div class="btn btn-cancel btn-form">
+                                <i class="fas fa-times"></i><div class="btn-text">Unblock</div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            }
+        </div>
+    }
+</div>

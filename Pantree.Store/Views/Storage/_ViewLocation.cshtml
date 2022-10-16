@@ -1,0 +1,89 @@
+﻿@model LocationView
+
+<div class="storage-form">
+
+    <form asp-controller="Storage" asp-action="EditLocationName" class="load-partial" attr-partial="storageSection" method="post">
+
+        <input asp-for="LocationID" type="hidden" />
+
+        <div class="form-input-container editable-container">
+            <div class="input-container">
+                <h2 class="input-text">@Model.LocationName</h2>
+                @if (Model.UserID == ViewBag.User.UserID)
+                {
+                    <input class="field-h2" asp-for="LocationName" />
+                    <div class="btn-tray">
+                        <div class="btn btn-edit">
+                            <i class="fas fa-pencil-alt"></i><div class="btn-text">Edit</div>
+                        </div>
+                        <div class="btn btn-save btn-form">
+                            <i class="fas fa-check"></i><div class="btn-text">Save</div>
+                        </div>
+                        <div class="btn btn-cancel">
+                            <i class="fas fa-times"></i><div class="btn-text">Cancel</div>
+                        </div>
+                        <div class="loading-icon">
+                            <i class="fas fa-spinner fa-2x fa-spin"></i>
+                        </div>
+                    </div>
+                }
+            </div>
+            <span asp-validation-for="LocationName"></span>
+        </div>
+
+    </form>
+
+    <form asp-controller="Storage" asp-action="EditLocationDescription" class="load-partial" attr-partial="storageContainer" method="post">
+
+        <input asp-for="LocationID" type="hidden" />
+
+        <div class="form-input-container editable-container">
+            <div class="input-container">
+                <div class="input-text">@(Model.Description ?? "No description")</div>
+                @if (Model.UserID == ViewBag.User.UserID)
+                {
+                    <input asp-for="Description" />
+                    <div class="btn-tray">
+                        <div class="btn btn-edit">
+                            <i class="fas fa-pencil-alt"></i><div class="btn-text">Edit</div>
+                        </div>
+                        <div class="btn btn-save btn-form">
+                            <i class="fas fa-check"></i><div class="btn-text">Save</div>
+                        </div>
+                        <div class="btn btn-cancel">
+                            <i class="fas fa-times"></i><div class="btn-text">Cancel</div>
+                        </div>
+                        <div class="loading-icon">
+                            <i class="fas fa-spinner fa-2x fa-spin"></i>
+                        </div>
+                    </div>
+                }
+            </div>
+            <span asp-validation-for="Description"></span>
+        </div>
+
+    </form>
+
+    <hr class="heading-line" />
+    @if (Model.UserID == ViewBag.User.UserID)
+    {
+        <div class="tab-tray">
+            <button class="selected" show="LocationAddStore">Add Store</button>
+            <button show="LocationSharing">Sharing</button>
+            <button show="LocationDelete">Delete</button>
+        </div>
+    }
+
+    @if (Model.UserID == ViewBag.User.UserID)
+    {
+        <partial name="_AddStore" model="@Model.StoreAdd" />
+    }
+
+    <partial name="_ShareLocation" model="@Model.LocationShare" />
+
+    @if (Model.UserID == ViewBag.User.UserID)
+    {
+        <partial name="_DeleteLocation" model="Model.LocationDelete" />
+    }
+
+</div>
